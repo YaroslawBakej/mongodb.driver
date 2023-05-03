@@ -19,6 +19,73 @@
                     }
                 }
             }
+        },
+        "/user/{_id}": {
+            "get": {
+                "tags": [
+                    "UserByID"
+                ],
+                "summary": "Find user by ID",
+                "description": "Returns user by id",
+                "operationId": "getUserById",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "description": "ID of user to return",
+                        "required": true,
+                        "schemas": {
+                            "ExampleObject": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Completed successfully",
+                        "required": true
+                    }
+                }
+            }
+        },
+        "/user/": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Create user",
+                "description": "This can only be done by the logged in user.",
+                "operationId": "createUser",
+                "requestBody": {
+                    "description": "Created user object",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "name":"name",
+                                "surname":"surname"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
